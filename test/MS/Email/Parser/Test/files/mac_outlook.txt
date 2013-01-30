@@ -1,0 +1,79 @@
+From example@gmail.com Tue Jan 29 20:55:04 2013
+Received: from mail-yh0-f43.google.com ([209.85.213.43])
+	by target.textilemanagement.com with esmtp (Exim 4.71)
+	(envelope-from <example@gmail.com>)
+	id 1U0ICt-0006zA-Ue
+	for atapi@astrotraker.com; Tue, 29 Jan 2013 20:55:04 +0000
+Received: by mail-yh0-f43.google.com with SMTP id z6so149334yhz.2
+        for <atapi@astrotraker.com>; Tue, 29 Jan 2013 12:54:58 -0800 (PST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=x-received:user-agent:date:subject:from:to:message-id:thread-topic
+         :mime-version:content-type;
+        bh=g7wo3/zciJnvMgrhpdap45E1gKLy01gAzlUxCpOOI1E=;
+        b=Vp9sIRkvM6WsswbiT63PpWJpMvX1wGu6hGo9w5l/WNZGF72F98u34J1pyTc10je0/T
+         /acr/75rSvtgrDsFH8WmK52ua0pSZwV6KhiJ9llbNyYRnN0nO9E+DsV6uWsXTlM4/WLs
+         7QDqqOJdywqSImLsRCvkm15nxtkI2cugpeLccxl75n/Ysc9E4vC4JWGf8anbAPbVKGOm
+         BNQ5ODzQAdMvThvb9MJc6vLN2heJa1fvs+Ja85Z+3wYaenH5TI+3t7b/EHcwMNc+6d2m
+         gM1nsCTHHDwcYsNScCt6cUbnSUNWUFrOTtfRrQZpYAI4JFrKeMHgGA2DxRpPOZ7mGOBZ
+         Jbcw==
+X-Received: by 10.236.182.68 with SMTP id n44mr2862096yhm.83.1359492898595;
+        Tue, 29 Jan 2013 12:54:58 -0800 (PST)
+Received: from [192.168.90.101] (68-184-102-180.dhcp.dgls.ga.charter.com. [68.184.102.180])
+        by mx.google.com with ESMTPS id s1sm13033375anj.1.2013.01.29.12.54.51
+        (version=TLSv1 cipher=RC4-SHA bits=128/128);
+        Tue, 29 Jan 2013 12:54:58 -0800 (PST)
+User-Agent: Microsoft-MacOutlook/14.2.5.121010
+Date: Tue, 29 Jan 2013 15:54:48 -0500
+Subject: Test subject line
+From: Cary Howell <example@gmail.com>
+To: <atapi@astrotraker.com>
+Message-ID: <CD2DA148.1A644%example@gmail.com>
+Thread-Topic: Test subject line
+Mime-version: 1.0
+Content-type: multipart/alternative;
+	boundary="B_3442319691_120858581"
+
+> This message is in MIME format. Since your mail reader does not understand
+this format, some or all of this message may not be legible.
+
+--B_3442319691_120858581
+Content-type: text/plain;
+	charset="US-ASCII"
+Content-transfer-encoding: 7bit
+
+Test body line.
+
+Signature follows:
+---
+J. Cary Howell
+e. example@gmail.com
+http://www.web-developer.us
+
+
+
+
+--B_3442319691_120858581
+Content-type: text/html;
+	charset="US-ASCII"
+Content-transfer-encoding: quoted-printable
+
+<html><head></head><body style=3D"word-wrap: break-word; -webkit-nbsp-mode: s=
+pace; -webkit-line-break: after-white-space; color: rgb(0, 0, 0); font-size:=
+ 14px; font-family: Calibri, sans-serif; "><div><div><div>Test body line.</d=
+iv><div><br></div><div>Signature follows:</div><div><div><div><span class=3D"A=
+pple-style-span" style=3D"font-family: Courier; border-collapse: collapse; "><=
+font class=3D"Apple-style-span" size=3D"2">---</font></span></div><div><span cla=
+ss=3D"Apple-style-span" style=3D"border-collapse: collapse; "><span class=3D"Apple=
+-style-span" style=3D"font-family: Calibri; ">J. Cary Howell</span></span></di=
+v><span class=3D"Apple-style-span" style=3D"border-collapse: collapse; font-size=
+: 12px; ">e. <a href=3D"mailto:example@gmail.com">example@gmail.com</a=
+>&nbsp;</span></div><div><span class=3D"Apple-style-span" style=3D"border-collap=
+se: collapse; font-size: 12px; ">http://www.web-developer.us</span><div><blo=
+ckquote style=3D"margin: 0px 0px 0px 40px; border-style: none; padding: 0px; "=
+></blockquote></div></div><div><br></div></div></div></div></body></html>
+
+--B_3442319691_120858581--
+
+
+
