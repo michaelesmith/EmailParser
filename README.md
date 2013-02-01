@@ -39,60 +39,42 @@ Examples
 
 ###Basic
 
-    $d = new msDateTime('2/5/1980 18:53:37'); //any string you could use with php's native DateTime
-    var_dump($d->format('l F j @ g:ia')); //any formating accepted by php's date()
-    // string(27) "Tuesday February 5 @ 6:53pm"
-    var_dump($d->dump()); //show current timestamp human readable for debugging
-    // string(31) "Tue, 05 Feb 1980 18:53:37 -0600"
+    $parser = new \MS\Email\Parser\Parser();
+    $message = $parser->parse($email);
 
-###Convenience methods example
+    // address object
+    $message->getFrom();
 
-    $d = new msDateTime();
-    var_dump($d->modify('-1 year +3 days')->dump());
-    // string(31) "Thu, 19 Aug 2010 22:38:39 -0500"
-    var_dump($d->finalDayOfQuarter()->endOfDay()->dump());
-    // string(31) "Thu, 30 Sep 2010 23:59:59 -0500"
-    var_dump($d->reset()->dump()); //internal timestamp can be reset to initial
-    // string(31) "Tue, 16 Aug 2011 22:38:39 -0500"
+    // email address
+    $message->getFrom()->getAddress();
 
-Complete list of methods
-------------------------
+    // name if given
+    $message->getFrom()->getName();
 
-###Update
-* public function beginningOfDay()
-* public function endOfDay()
-* public function firstDayOfWeek()  //Sets to Sunday
-* public function finalDayOfWeek()  //Sets to Saturday
-* public function firstDayOfMonth()
-* public function finalDayOfMonth()
-* public function firstDayOfQuarter()
-* public function finalDayOfQuarter()
-* public function isFinalDayOfQuarter()
+    // string
+    $message->getSubject();
 
-###Tests
-* public function isBeginningOfDay()
-* public function isEndOfDay()
-* public function isFirstDayOfWeek()  //Returns true for Sunday
-* public function isFinalDayOfWeek()  //Returns true for Saturday
-* public function isFirstDayOfMonth()
-* public function isFinalDayOfMonth()
-* public function isFirstDayOfQuarter()
+    // decoded plain text part
+    $message->getTextBody();
 
-###Tests around now
-* public function isToday()
-* public function isTomorrow()
-* public function isYesterday()
-* public function isCurrentWeek()  //Uses ISO-8601 weeks Monday - Sunday
-* public function isCurrentMonth()
-* public function isCurrentYear()
+    // decoded html body part
+    $message->getHtmlBody();
 
-###Miscellaneous
-* public static function create($time = null, $object = null)  //Creates a new msDateTime object inline to preserve fluid calls
-* public function  __toString()  //Returns the current timestamp in "Y-m-d H:i:s" format
-* public function copy()
-* public function compare($msDateTime2)  //Compares this object to $msDateTime2 by returning the difference in seconds
-* public function dump()  //Outputs the current timestamp in a general format. Should only be used for debugging.
-* public function getQuarter()
+    // attachments
+    $attachments = $message->getAttachments();
+    // attachment object
+    $attachments[0]
+    // methods
+    $attachments[0]->getFilename();
+    $attachments[0]->getMimeType();
+    // decoded attachment content
+    $attachments[0]->getContent();
 
+###Encodings supported
 
-Examples can be found in docs/examples.php and can be run with "php docs/examples.php"
+    * base64
+    * quoted-printable
+    * 7bit
+    * 8bit
+
+More usage can be found in the tests
