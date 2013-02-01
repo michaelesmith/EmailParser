@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/michaelesmith/msEmailParser.png)](http://secure.travis-ci.org/michaelesmith/msEmailParser)
+[![Build Status](https://www.travis-ci.org/michaelesmith/msEmailParser.png?branch=master)](https://www.travis-ci.org/michaelesmith/msEmailParser)
 
 README
 ======
