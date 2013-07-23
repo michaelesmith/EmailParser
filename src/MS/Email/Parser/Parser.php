@@ -18,7 +18,8 @@ class Parser
             $this->getHeader('subject'),
             $this->getText(),
             $this->getHtml(),
-            $this->getAttachments()
+            $this->getAttachments(),
+            $this->getHeader('date')
         );
     }
 

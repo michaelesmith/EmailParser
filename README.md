@@ -51,6 +51,12 @@ Examples
     // name if given
     $message->getFrom()->getName();
 
+    // date sent
+    $message->getDate()
+
+    // date sent as DateTime object (PHP 5.3+)
+    $message->getDateAsDateTime()
+
     // string
     $message->getSubject();
 
