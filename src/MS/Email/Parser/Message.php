@@ -20,7 +20,9 @@ class Message
 
     protected $subject;
 
-    public function __construct($from, $to, $subject, $textBody, $htmlBody, $attachments = array())
+    protected $date;
+
+    public function __construct($from, $to, $subject, $textBody, $htmlBody, $attachments = array(), $date)
     {
         $this->from = $from;
         $this->to = $to;
@@ -28,6 +30,7 @@ class Message
         $this->textBody = $textBody;
         $this->htmlBody = $htmlBody;
         $this->attachments = $attachments;
+        $this->date = $date;
     }
 
     public function getAttachments()
@@ -56,6 +59,16 @@ class Message
     public function getTextBody()
     {
         return $this->textBody;
+    }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    public function getDateAsDateTime()
+    {
+        return \DateTime::createFromFormat('D, j M Y H:i:s O', $this->date);
     }
 
     /**
