@@ -1,9 +1,9 @@
 {
     "name": "michaelesmith/email-parser",
-    "version": "0.1",
+    "version": "0.2",
     "description": "Parse an email into an object representation",
     "keywords": ["email", "parse"],
-    "homepage": "http://michaelsmithonline.blogspot.com/p/email-parser.html",
+    "homepage": "https://github.com/michaelesmith/EmailParser",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -14,7 +14,7 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/michaelesmith/msEmailParser/issues"
+        "issues": "https://github.com/michaelesmith/EmailParser/issues"
     },
     "require": {
         "php": ">=5.3.2",
