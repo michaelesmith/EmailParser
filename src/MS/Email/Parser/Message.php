@@ -16,16 +16,19 @@ class Message
 
     protected $to;
 
+    protected $cc;
+
     protected $from;
 
     protected $subject;
 
     protected $date;
 
-    public function __construct($from, $to, $subject, $textBody, $htmlBody, $attachments = array(), $date)
+    public function __construct(Address $from, AddressCollection $to, AddressCollection $cc, $subject, $textBody, $htmlBody, $attachments = array(), $date)
     {
         $this->from = $from;
         $this->to = $to;
+        $this->cc = $cc;
         $this->subject = $subject;
         $this->textBody = $textBody;
         $this->htmlBody = $htmlBody;
@@ -72,11 +75,19 @@ class Message
     }
 
     /**
-     * @return \MS\Email\Parser\Address
+     * @return \MS\Email\Parser\AddressCollection
      */
     public function getTo()
     {
         return $this->to;
+    }
+
+    /**
+     * @return \MS\Email\Parser\AddressCollection
+     */
+    public function getCC()
+    {
+        return $this->cc;
     }
 
 }

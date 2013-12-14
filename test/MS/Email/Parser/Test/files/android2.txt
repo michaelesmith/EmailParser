@@ -1,0 +1,44 @@
+From example@textilemanagement.com Wed Jan 30 22:26:17 2013
+Received: from [205.144.208.132] (helo=mail.textilemanagement.com)
+	by target.textilemanagement.com with esmtp (Exim 4.71)
+	(envelope-from <example@textilemanagement.com>)
+	id 1U0g6i-00045G-Kd
+	for atapi@astrotraker.com; Wed, 30 Jan 2013 22:26:17 +0000
+Received: from TMAE2K7DBS1.textilemanagement.com ([::1]) by
+ TMAEXCHANGE2.textilemanagement.com ([fe80::7419:8c72:165f:a730%12]) with
+ mapi; Wed, 30 Jan 2013 17:25:08 -0500
+From: Michael Smith <example@textilemanagement.com>
+To: "atapi@astrotraker.com" <atapi@astrotraker.com>, "Michael Smith" <example@textilemanagement.com>
+CC: "atapi@astrotraker.com" <atapi2@astrotraker.com>, "Michael Smith" <example2@textilemanagement.com>
+Date: Wed, 30 Jan 2013 17:25:07 -0500
+Subject: Tests
+Thread-Topic: Tests
+Thread-Index: Ac3/OKjMeLY7NEISQ26aIQ49Fm227Q==
+Message-ID: <CA399962-3C8E-4651-88BB-A061856049C3@textilemanagement.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: yes
+X-MS-TNEF-Correlator:
+acceptlanguage: en-US
+Content-Type: multipart/mixed;
+	boundary="_004_CA3999623C8E465188BBA061856049C3textilemanagementcom_"
+MIME-Version: 1.0
+
+--_004_CA3999623C8E465188BBA061856049C3textilemanagementcom_
+Content-Type: multipart/alternative;
+	boundary="_000_CA3999623C8E465188BBA061856049C3textilemanagementcom_"
+
+--_000_CA3999623C8E465188BBA061856049C3textilemanagementcom_
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+DQoNClNlbnQgZnJvbSBteSBWZXJpem9uIFdpcmVsZXNzIDRHTFRFIHNtYXJ0cGhvbmUNCg0K
+
+--_000_CA3999623C8E465188BBA061856049C3textilemanagementcom_
+Content-Type: text/html; charset="utf-8"
+Content-Transfer-Encoding: base64
+
+DQo8YnI+PGJyPlNlbnQgZnJvbSBteSBWZXJpem9uIFdpcmVsZXNzIDRHTFRFIHNtYXJ0cGhvbmU8
+YnI+PGJyPg0K
+
+--_000_CA3999623C8E465188BBA061856049C3textilemanagementcom_--

@@ -14,7 +14,8 @@ class Parser
 
         return new Message(
             new Address($this->getHeader('from')),
-            new Address($this->getHeader('to')),
+            new AddressCollection($this->getHeader('to')),
+            new AddressCollection($this->getHeader('cc')),
             $this->getHeader('subject'),
             $this->getText(),
             $this->getHtml(),

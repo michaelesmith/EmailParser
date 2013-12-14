@@ -12,7 +12,7 @@ class ParserTest extends TestCase
     /**
      * @dataProvider provider
      */
-    public function testParse($file, $fromName, $fromAddress, $toName, $toAddress, $date, $subject, $textBody, $htmlBody, $attachments)
+    public function testParse($file, $fromName, $fromAddress, $toAddresses, $ccAddresses, $date, $subject, $textBody, $htmlBody, $attachments)
     {
         $p = new Parser();
 
@@ -21,8 +21,17 @@ class ParserTest extends TestCase
         $this->assertEquals($fromName, $m->getFrom()->getName());
         $this->assertEquals($fromAddress, $m->getFrom()->getAddress());
 
-        $this->assertEquals($toName, $m->getTo()->getName());
-        $this->assertEquals($toAddress, $m->getTo()->getAddress());
+        $this->assertCount(count($toAddresses), $m->getTo());
+        foreach($toAddresses as $key => $toAddress){
+            $this->assertEquals($toAddress[0], $m->getTo()->get($key)->getName());
+            $this->assertEquals($toAddress[1], $m->getTo()->get($key)->getAddress());
+        }
+
+        $this->assertCount(count($ccAddresses), $m->getCC());
+        foreach($ccAddresses as $key => $ccAddress){
+            $this->assertEquals($ccAddress[0], $m->getCC()->get($key)->getName());
+            $this->assertEquals($ccAddress[1], $m->getCC()->get($key)->getAddress());
+        }
 
         $this->assertEquals($date, $m->getDate());
         $dateObj = $m->getDateAsDateTime();
@@ -45,7 +54,12 @@ class ParserTest extends TestCase
     public function provider()
     {
         return array(
-            array(0, 'Pawel', 'pawel@test.com', '', 'dan@test.com', 'Tue, 28 Aug 2012 11:40:10 +0200',
+            array(0, 'Pawel', 'pawel@test.com',
+                array(
+                    array('', 'dan@test.com')
+                ),
+                array(),
+                'Tue, 28 Aug 2012 11:40:10 +0200',
                 '=?UTF-8?B?emHFvMOzxYLEhyBnxJnFm2zEhSBqYcW6xYQgaSB6csOzYiBwcsOzYm4=?= =?UTF-8?B?ZSB6YWRhbmllICUldG9k?=',
                 'This is just a test. I
 Repeat just a test',
@@ -59,19 +73,33 @@ monospace;">This is just a test. I<br>Repeat just a test<br>Pawel<br></span></di
 </html>',
                 array()
             ),
-            array(1, 'Dan @ Test.com', 'dan@test.com', 'Daniele', 'danielet@test.com', 'Tue, 18 Sep 2012 10:41:22 +0100',
+            array(1, 'Dan @ Test.com', 'dan@test.com',
+                array(
+                    array('Daniele', 'danielet@test.com')
+                ),
+                array(),
+                'Tue, 18 Sep 2012 10:41:22 +0100',
                 'this is a test',
                 'Hope it works!',
                 '',
                 array()
             ),
-            array(2, 'Dan', 'dan@test.com', 'Daniele', 'daniele@test.com', 'Tue, 18 Sep 2012 11:26:11 +0100',
+            array(2, 'Dan', 'dan@test.com',
+                array(
+                    array('Daniele', 'daniele@test.com')
+                ),
+                array(),
+                'Tue, 18 Sep 2012 11:26:11 +0100',
                 '=?ISO-2022-JP?B?GyRCJDMkbCRPJUYlOSVIJEckORsoQg==?=',
                 'それは作品を期待',
                 'それは作品を期待<div title="signature"> </div>',
                 array()
             ),
-            array(3, 'Dan Occhi', 'dan@example.com', 'Inbox_danocch.it_2063@examplebox.com', 'Inbox_danocch.it_2063@examplebox.com',
+            array(3, 'Dan Occhi', 'dan@example.com',
+                array(
+                    array('Inbox_danocch.it_2063@examplebox.com', 'Inbox_danocch.it_2063@examplebox.com')
+                ),
+                array(),
                 'Tue, 9 Oct 2012 18:23:09 +0100',
                 'Voice Memo',
                 '
@@ -84,7 +112,12 @@ Sent from my iPad
                     array('example_vmr_09102012182307.3gp', 'audio/caf')
                 )
             ),
-            array('gmail', 'Michael Smith', 'example@gmail.com', '', 'atapi@astrotraker.com', 'Wed, 30 Jan 2013 13:03:55 -0600',
+            array('gmail', 'Michael Smith', 'example@gmail.com',
+                array(
+                    array('', 'atapi@astrotraker.com')
+                ),
+                array(),
+                'Wed, 30 Jan 2013 13:03:55 -0600',
                 'gmail test',
                 'Thanks,
 Michael',
@@ -94,7 +127,11 @@ Michael',
                     array('e0t0tY2Py0WeHXw8qANI6A2 (1).jpg', 'image/jpeg')
                 )
             ),
-            array('mac_outlook', 'Cary Howell', 'example@gmail.com', '', 'atapi@astrotraker.com',
+            array('mac_outlook', 'Cary Howell', 'example@gmail.com',
+                array(
+                    array('', 'atapi@astrotraker.com')
+                ),
+                array(),
                 'Tue, 29 Jan 2013 15:54:48 -0500',
                 'Test subject line',
                 'Test body line.
@@ -110,7 +147,11 @@ http://www.web-developer.us
                 '<html><head></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; color: rgb(0, 0, 0); font-size: 14px; font-family: Calibri, sans-serif; "><div><div><div>Test body line.</div><div><br></div><div>Signature follows:</div><div><div><div><span class="Apple-style-span" style="font-family: Courier; border-collapse: collapse; "><font class="Apple-style-span" size="2">---</font></span></div><div><span class="Apple-style-span" style="border-collapse: collapse; "><span class="Apple-style-span" style="font-family: Calibri; ">J. Cary Howell</span></span></div><span class="Apple-style-span" style="border-collapse: collapse; font-size: 12px; ">e. <a href="mailto:example@gmail.com">example@gmail.com</a>&nbsp;</span></div><div><span class="Apple-style-span" style="border-collapse: collapse; font-size: 12px; ">http://www.web-developer.us</span><div><blockquote style="margin: 0px 0px 0px 40px; border-style: none; padding: 0px; "></blockquote></div></div><div><br></div></div></div></div></body></html>',
                 array()
             ),
-            array('android', 'Michael Smith', 'example@textilemanagement.com', 'atapi@astrotraker.com', 'atapi@astrotraker.com',
+            array('android', 'Michael Smith', 'example@textilemanagement.com',
+                array(
+                    array('atapi@astrotraker.com', 'atapi@astrotraker.com')
+                ),
+                array(),
                 'Wed, 30 Jan 2013 17:25:07 -0500',
                 'Tests',
                 "\r\n\r\nSent from my Verizon Wireless 4GLTE smartphone\r\n\r\n",
@@ -119,7 +160,26 @@ http://www.web-developer.us
                     array('earth-moon-space-sun.jpg', 'application/octet-stream')
                 )
             ),
-             array('thunderbird', 'Michael Smith', 'example@textilemanagement.com', '', 'atapi@astrotraker.com',
+            array('android2', 'Michael Smith', 'example@textilemanagement.com',
+                array(
+                    array('atapi@astrotraker.com', 'atapi@astrotraker.com'),
+                    array('Michael Smith', 'example@textilemanagement.com'),
+                ),
+                array(
+                    array('atapi@astrotraker.com', 'atapi2@astrotraker.com'),
+                    array('Michael Smith', 'example2@textilemanagement.com'),
+                ),
+                'Wed, 30 Jan 2013 17:25:07 -0500',
+                'Tests',
+                "\r\n\r\nSent from my Verizon Wireless 4GLTE smartphone\r\n\r\n",
+                "\r\n<br><br>Sent from my Verizon Wireless 4GLTE smartphone<br><br>\r\n",
+                array()
+            ),
+             array('thunderbird', 'Michael Smith', 'example@textilemanagement.com',
+                 array(
+                     array('', 'atapi@astrotraker.com')
+                 ),
+                 array(),
                 'Wed, 30 Jan 2013 16:18:32 -0600',
                 'Fwd: test subject',
                 '
@@ -162,7 +222,11 @@ Michael
 //                    array('e0t0tY2Py0WeHXw8qANI6A2 (1).jpg', 'application/octet-stream')
 //                )
 //            ),
-             array('ipad2', 'Cary Howell', 'example@textilemanagement.com', 'atapi@astrotraker.com', 'atapi@astrotraker.com',
+             array('ipad2', 'Cary Howell', 'example@textilemanagement.com',
+                 array(
+                     array('atapi@astrotraker.com', 'atapi@astrotraker.com')
+                 ),
+                 array(),
                 'Thu, 31 Jan 2013 16:20:45 -0500',
                 'Samples P200',
                 'Test',
