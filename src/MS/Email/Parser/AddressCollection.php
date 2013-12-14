@@ -14,11 +14,15 @@ class AddressCollection extends ArrayCollection {
 
     public function __construct($addressesStr)
     {
-        $addresses = array();
-        if(trim($addressesStr)){
-            foreach(explode(',', $addressesStr) as $address){
-                $addresses[] = new Address($address);
+        if(!is_array($addressesStr)){
+            $addresses = array();
+            if(trim($addressesStr)){
+                foreach(explode(',', $addressesStr) as $address){
+                    $addresses[] = new Address($address);
+                }
             }
+        }else{
+            $addresses = $addressesStr;
         }
 
         parent::__construct($addresses);
