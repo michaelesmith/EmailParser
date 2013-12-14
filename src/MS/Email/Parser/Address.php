@@ -15,6 +15,7 @@ class Address
 
     public function __construct($str)
     {
+        $str = trim($str);
         if(strpos($str, '<') === false){
             $this->address = $str;
             $this->original = $str;
