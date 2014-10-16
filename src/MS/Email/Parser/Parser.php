@@ -19,7 +19,7 @@ class Parser
             $this->getHeader('subject'),
             $this->getText(),
             $this->getHtml(),
-            $this->getAttachments(),
+            $this->getAllAttachments(),
             $this->getHeader('date')
         );
     }
@@ -39,8 +39,20 @@ class Parser
     }
 
     protected function getAttachments(){
+        return $this->getAttachmentsFromPart('/attachment/');
+    }
+
+    protected function getInlineAttachments(){
+        return $this->getAttachmentsFromPart('/inline/');
+    }
+
+    protected function getAllAttachments(){
+        return array_merge($this->getAttachments(), $this->getInlineAttachments());
+    }
+
+    private function getAttachmentsFromPart($part){
         if(!is_array($this->parts['body'])) return false;
-        $attachments = $this->searchByHeader('/content\-disposition/','/attachment/');
+        $attachments = $this->searchByHeader('/content\-disposition/', $part);
         $attachments = $attachments ? $attachments : array();
 
         $attachmentObjects = array();
