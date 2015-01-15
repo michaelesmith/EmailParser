@@ -2,10 +2,13 @@
 
 namespace MS\Email\Parser;
 
+use JsonSerializable;
+
 /**
  * @author msmith
+ * @author sebastien monterisi <sebastienmonterisi@yahoo.fr>
  */
-class Message
+class Message implements JsonSerializable
 {
 
     protected $htmlBody;
@@ -88,6 +91,17 @@ class Message
     public function getCC()
     {
         return $this->cc;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+          'to' => $this->getTo(),  
+          'from' => $this->getFrom(),  
+          'subject' => $this->getSubject(),  
+          'html_body' => $this->getHtmlBody(),  
+          'text_body' => $this->getTextBody(),  
+        ];
     }
 
 }
