@@ -2,10 +2,13 @@
 
 namespace MS\Email\Parser;
 
+use JsonSerializable;
+
 /**
  * @author msmith
+ * @author sebastien monterisi <sebastienmonterisi@yahoo.fr>
  */
-class Part
+class Part implements JsonSerializable
 {
     protected $type;
 
@@ -64,5 +67,14 @@ class Part
         return $this->type;
     }
 
+    public function jsonSerialize()
+    {
+        return [
+          'type'=>$this->getType(),
+          'disposition' => $this->getDisposition(),
+          'encoding' => $this->getEncoding(),
+          'content' => $this->getDecodedContent()
+        ];
+    }
 
 }
