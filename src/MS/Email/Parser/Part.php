@@ -35,9 +35,7 @@ class Part
                 $content = base64_decode($this->content);
                 break;
             case 'quoted-printable':
-                // break !!
-                $content = $this->content;
-//                $content = quoted_printable_decode($this->content);
+                $content = quoted_printable_decode($this->content);
                 break;
             default:
                 throw new \RuntimeException(sprintf('unknown encoding type "%s"', $this->encoding));
