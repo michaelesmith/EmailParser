@@ -1,11 +1,13 @@
 <?php
 
 namespace MS\Email\Parser;
+use JsonSerializable;
 
 /**
  * @author msmith
+ * @author sebastien monterisi <sebastienmonterisi@yahoo.fr>
  */
-class Address
+class Address implements JsonSerializable
 {
     protected $name;
 
@@ -46,6 +48,13 @@ class Address
     public function getName()
     {
         return $this->name;
+    }
+
+    public function jsonSerialize()
+    {
+        return ['name'=> $this->getName(),
+                'address' => $this->getAddress(),
+            ];
     }
 
 }

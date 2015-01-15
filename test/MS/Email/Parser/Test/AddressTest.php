@@ -6,6 +6,7 @@ use MS\Email\Parser\Address;
 
 /**
  * @author msmith
+ * @author sebastien monterisi <sebastienmonterisi@yahoo.fr>
  */
 class AddressTest extends TestCase
 {
@@ -26,6 +27,14 @@ class AddressTest extends TestCase
         $a = new Address('dan@example.com');
         $this->assertEquals('', $a->getName());
         $this->assertEquals('dan@example.com', $a->getAddress());
+    }
+    
+    public function testJsonSerializable()
+    {
+        $address = new Address('Dan Occhi <dan@example.com>');
+        $expected = '{"name":"Dan Occhi","address":"dan@example.com"}';
+        
+        $this->assertEquals($expected, json_encode($address));
     }
 
 }
