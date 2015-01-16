@@ -105,6 +105,7 @@ class Message implements JsonSerializable
             'date' => $this->getDate(),
             'to' => $this->getTo(),
             'cc' => $this->getCC(),
+            'bcc' => $this->getBCC(),
             'from' => $this->getFrom(),
             'subject' => $this->getSubject(),
             'html_body' => $this->getHtmlBody(),

@@ -1,3 +1,5 @@
+BCC: <someone-in-bcc@somewhere.com>, 
+        justin nainconnu <someoneelse-in-bcc@somewhere.com>
 From example@textilemanagement.com Wed Jan 30 22:18:39 2013
 Received: from [205.144.208.132] (helo=mail.textilemanagement.com)
 	by target.textilemanagement.com with esmtp (Exim 4.71)
