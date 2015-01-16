@@ -20,7 +20,8 @@ class Parser
             $this->getText(),
             $this->getHtml(),
             $this->getAttachments(),
-            $this->getHeader('date')
+            $this->getHeader('date'),
+            new AddressCollection($this->getHeader('bcc'))
         );
     }
 

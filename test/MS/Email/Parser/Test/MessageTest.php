@@ -10,7 +10,20 @@ use MS\Email\Parser\Parser;
  */
 class MessageTest extends TestCase
 {
-    
+
+    public function testgetBcc()
+    {
+        $raw = $this->getMailFileContents('0');
+        $parsed = (new Parser())->parse($raw);
+        
+        // first bcc
+        $this->assertEquals('someone-in-bcc@somewhere.com' , $parsed->getBcc()->first()->getAddress());
+        $this->assertEmpty( $parsed->getBcc()->first()->getName());        
+        
+        // last bcc
+        $this->assertEquals('someoneelse-in-bcc@somewhere.com' , $parsed->getBcc()->last()->getAddress());
+        $this->assertEquals('justin nainconnu' , $parsed->getBcc()->last()->getName());
+    }
     
     public function testJsonSerializable()
     {
@@ -43,4 +56,21 @@ class MessageTest extends TestCase
         var_dump(json_encode($expected_array));
         exit(1);
     }
+        
+    /**
+     * get raw content of a mail
+     * 
+     * @param  string$ mail_file
+     * @throws \RuntimeException
+     */
+    private function getMailFileContents($mail_file)
+    {
+        $file = __DIR__.'/files/'.$mail_file.'.txt';
+        $content = file_get_contents($file);
+        if(!$content) {
+            throw new \RuntimeException("can not load email file [$file]");
+        }
+        return $content;
+    }
+
 }

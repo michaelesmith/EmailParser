@@ -19,8 +19,12 @@ class Message implements JsonSerializable
     protected $from;
     protected $subject;
     protected $date;
+    /**
+     * @var AddressCollection hidden recipients
+     */
+    protected $bcc;
 
-    public function __construct(Address $from, AddressCollection $to, AddressCollection $cc, $subject, $textBody, $htmlBody, $attachments = array(), $date)
+    public function __construct(Address $from, AddressCollection $to, AddressCollection $cc, $subject, $textBody, $htmlBody, $attachments = array(), $date, AddressCollection $bcc)
     {
         $this->from = $from;
         $this->to = $to;
@@ -30,6 +34,7 @@ class Message implements JsonSerializable
         $this->htmlBody = $htmlBody;
         $this->attachments = $attachments;
         $this->date = $date;
+        $this->bcc = $bcc;
     }
 
     public function getAttachments()
@@ -84,6 +89,14 @@ class Message implements JsonSerializable
     public function getCC()
     {
         return $this->cc;
+    }
+
+    /**
+     * @return \MS\Email\Parser\AddressCollection
+     */
+    public function getBCC()
+    {
+        return $this->bcc;
     }
 
     public function jsonSerialize()

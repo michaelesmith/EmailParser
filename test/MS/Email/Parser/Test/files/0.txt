@@ -1,3 +1,5 @@
+BCC: <someone-in-bcc@somewhere.com>, 
+        justin nainconnu <someoneelse-in-bcc@somewhere.com>
 Delivered-To: dan@test.com
 Received: by 10.76.34.137 with SMTP id z9csp136640oai;
         Tue, 28 Aug 2012 02:40:28 -0700 (PDT)
