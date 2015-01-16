@@ -12,19 +12,12 @@ class Message implements JsonSerializable
 {
 
     protected $htmlBody;
-
     protected $textBody;
-
     protected $attachments = array();
-
     protected $to;
-
     protected $cc;
-
     protected $from;
-
     protected $subject;
-
     protected $date;
 
     public function __construct(Address $from, AddressCollection $to, AddressCollection $cc, $subject, $textBody, $htmlBody, $attachments = array(), $date)
@@ -96,11 +89,13 @@ class Message implements JsonSerializable
     public function jsonSerialize()
     {
         return [
-          'to' => $this->getTo(),  
-          'from' => $this->getFrom(),  
-          'subject' => $this->getSubject(),  
-          'html_body' => $this->getHtmlBody(),  
-          'text_body' => $this->getTextBody(),  
+            'date' => $this->getDate(),
+            'to' => $this->getTo(),
+            'cc' => $this->getCC(),
+            'from' => $this->getFrom(),
+            'subject' => $this->getSubject(),
+            'html_body' => $this->getHtmlBody(),
+            'text_body' => $this->getTextBody(),
         ];
     }
 
