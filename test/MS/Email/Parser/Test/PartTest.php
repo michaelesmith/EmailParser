@@ -6,6 +6,7 @@ use MS\Email\Parser\Part;
 
 /**
  * @author msmith
+ * @author sebastien monterisi <sebastienmonterisi@yahoo.fr>
  */
 class PartTest extends TestCase
 {
@@ -32,4 +33,9 @@ class PartTest extends TestCase
         $p->getDecodedContent();
     }
 
+    public function testJsonSerializable()
+    {
+        $part = new Part(quoted_printable_encode('This is a test 5=4+1'), 'quoted-printable', 'image/jpg', 'inline');
+        $this->assertEquals('{"type":"image\/jpg","disposition":"inline","encoding":"quoted-printable","content":"This is a test 5=4+1"}', json_encode($part));
+    }
 }

@@ -1,16 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: msmith
- * Date: 12/13/13
- * Time: 9:32 PM
- */
 
 namespace MS\Email\Parser;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use JsonSerializable;
 
-class AddressCollection extends ArrayCollection {
+/**
+ * @author msmith
+ * @author sebastien monterisi <sebastienmonterisi@yahoo.fr>
+ */
+class AddressCollection extends ArrayCollection implements JsonSerializable {
 
     public function __construct($addressesStr)
     {
@@ -26,6 +25,11 @@ class AddressCollection extends ArrayCollection {
         }
 
         parent::__construct($addresses);
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->getValues();
     }
 
 }

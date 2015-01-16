@@ -2,26 +2,22 @@
 
 namespace MS\Email\Parser;
 
+use JsonSerializable;
+
 /**
  * @author msmith
+ * @author sebastien monterisi <sebastienmonterisi@yahoo.fr>
  */
-class Message
+class Message implements JsonSerializable
 {
 
     protected $htmlBody;
-
     protected $textBody;
-
     protected $attachments = array();
-
     protected $to;
-
     protected $cc;
-
     protected $from;
-
     protected $subject;
-
     protected $date;
 
     public function __construct(Address $from, AddressCollection $to, AddressCollection $cc, $subject, $textBody, $htmlBody, $attachments = array(), $date)
@@ -88,6 +84,19 @@ class Message
     public function getCC()
     {
         return $this->cc;
+    }
+
+    public function jsonSerialize()
+    {
+        return [
+            'date' => $this->getDate(),
+            'to' => $this->getTo(),
+            'cc' => $this->getCC(),
+            'from' => $this->getFrom(),
+            'subject' => $this->getSubject(),
+            'html_body' => $this->getHtmlBody(),
+            'text_body' => $this->getTextBody(),
+        ];
     }
 
 }
