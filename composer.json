@@ -1,6 +1,6 @@
 {
     "name": "michaelesmith/email-parser",
-    "version": "0.2",
+    "version": "0.3",
     "description": "Parse an email into an object representation",
     "keywords": ["email", "parse"],
     "homepage": "https://github.com/michaelesmith/EmailParser",
