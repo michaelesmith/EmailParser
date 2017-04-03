@@ -40,7 +40,7 @@ class Parser
 
     protected function getAttachments(){
         if(!is_array($this->parts['body'])) return false;
-        $attachments = $this->searchByHeader('/content\-disposition/','/attachment/');
+        $attachments = $this->searchByHeader('/content\-disposition/','/attachment|inline/');
         $attachments = $attachments ? $attachments : array();
 
         $attachmentObjects = array();
